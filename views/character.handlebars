@@ -1,11 +1,11 @@
-<div id="character-selection" style="width: 25%; float: left;">
-  <h2>Create Your Character</h2>
+<div class="character-selection">
+  <h3>Select Your Character</h3>
   <form id="character-form">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
+    <label for="character-name">Name:</label>
+    <input type="text" id="character-name" name="character-name" required />
 
-    <label for="class">Class:</label>
-    <select id="class" name="class">
+    <label for="character-type">Type:</label>
+    <select id="character-type" name="character-type" required>
       <option value="warrior">Warrior</option>
       <option value="wizard">Wizard</option>
       <option value="archer">Archer</option>
@@ -15,7 +15,4 @@
   </form>
 </div>
 
-<div id="map" style="width: 75%; float: right; position: relative;">
-  <h2>Map</h2>
-  <!-- Characters will be placed here -->
-</div>
+<div id="map"></div>

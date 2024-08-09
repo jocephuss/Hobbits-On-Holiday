@@ -1,24 +1,31 @@
+body {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 #character-selection {
-    padding: 20px;
-    background-color: #f4f4f4;
-    height: 100vh;
-    box-sizing: border-box;
-  }
-  
-  #map {
-    padding: 20px;
-    background-image: url('https://th.bing.com/th/id/R.ccccafc47d41cd7bfd18be4aa785a610?rik=cEtkH%2blT97GXIg&riu=http%3a%2f%2fstatic1.squarespace.com%2fstatic%2f5d3f5ab4e0b0f80001519db3%2f5da64563e5f12b771ef050bf%2f60f9e7709e2b4e2d0498ff9e%2f1626990468176%2fCFC24B4A-AB8B-49A6-A53A-EC69C297D9DE.jpeg%3fformat%3d1500w&ehk=RMTy5DPoAsHh7tu89iAtom%2bmYHbg61DVZrwoSuUNVcM%3d&risl=&pid=ImgRaw&r=0');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    width: 75%;
-    float: right;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .character {
-    position: absolute;
-    cursor: move;
-  }
+  padding: 20px;
+  background-color: #f4f4f4;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+#map {
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 75%;
+  float: right;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.character {
+  position: absolute;
+  cursor: move;
+}
