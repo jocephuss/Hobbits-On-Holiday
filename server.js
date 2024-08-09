@@ -3,12 +3,11 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const app = express();
-
-
+const app = express();const sequelize = require('./config/connection');
 
 //Set Up Sessions with Cookies
 // Set up sessions with cookies
+
 const sess = {
   secret: 'Super secret secret',
   cookie: {
@@ -23,6 +22,7 @@ const sess = {
 };
 
 app.use(session(sess));
+
 // Set up Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
