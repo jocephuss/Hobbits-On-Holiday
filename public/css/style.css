@@ -1,16 +1,25 @@
 body {
   display: flex;
   height: 100vh;
-  margin: 0;
-  padding: 0;
+  margin: 10px;
+  padding: 5px;
   font-family: Arial, Helvetica, sans-serif;
+  background-image: url(https://wallpaperaccess.com/full/2668466.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-#character-selection {
+.character-selection {
   padding: 20px;
-  background-color: #f4f4f4;
   height: 100vh;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.485);
+  color: white;
 }
 
 #map {
@@ -18,14 +27,53 @@ body {
   background-size: cover;
   background-position: center;
   height: 100vh;
-  width: 75%;
+  width: 85%;
   float: right;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  margin-left: 15px;
+  border: 5px solid grey;
+  border-radius: 10px;
 }
 
 .character {
   position: absolute;
   cursor: move;
+}
+
+h3 {
+  color: white;
+  font-size: 25px;
+}
+
+#character-form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.819);
+  color: white;
+}
+
+#character-name {
+  margin: 5px;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+}
+
+#character-type {
+  margin: 5px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+button {
+  margin: 5px;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgba(128, 128, 128, 0.819);
+  color: white;
 }

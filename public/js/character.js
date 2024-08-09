@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Dimensions of the image
-  let w = 3000,
-    h = 2000;
+  let w = 3700,
+    h = 2200;
 
   // Calculate bounds
   let southWest = map.unproject([0, h], map.getMaxZoom() - 1);
