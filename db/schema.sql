@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS campaing_db;
-CREATE DATABASE campaing_db;
+DROP DATABASE IF EXISTS campaign_db;
+CREATE DATABASE campaign_db;
