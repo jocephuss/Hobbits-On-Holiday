@@ -1,38 +1,62 @@
 const router = require("express").Router();
-const { User, Character } = require("../models");
+const { Character } = require("../models");
 const withAuth = require("../utils/auth");
 
-router.get("/", withAuth, async (req, res) => {
-  // If the user is not logged in, redirect the user to the login page
-  if (!req.session.loggedIn) {
-    res.redirect("/login");
-  } else {
-    // If the user is logged in, allow them to view the map
-    try {
-      const userData = await user.findAll({
-        order: [["name", "ASC"]],
-      });
+router.get("/character", withAuth, async (req, res) => {
+  try {
+    const characterData = await Character.findAll({
+      where: { user_id: req.session.user_id },
+    });
 
-      const user = userData.map((project) => user.get({ plain: true }));
+    const characters = characterData.map((character) =>
+      character.get({ plain: true })
+    );
 
-      res.render("homepage", {
-        user: req.user,
-        logged_in: req.session.logged_in,
-      });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json(err);
-    }
+    res.render("character", {
+      characters,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
+// Home route
+router.get("/", async (req, res) => {
+  try {
+    // Render the homepage or another main page
+    res.render("homepage", {
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Login route
 router.get("/login", (req, res) => {
+  // If the user is already logged in, redirect to the home page or another appropriate page
   if (req.session.logged_in) {
     res.redirect("/");
     return;
   }
 
+  // Otherwise, render the login page
   res.render("login");
+});
+
+// Other routes...
+
+// Signup route
+router.get("/signup", (req, res) => {
+  // If the user is already logged in, redirect to the home page or another appropriate page
+  if (req.session.logged_in) {
+    res.redirect("/");
+    return;
+  }
+
+  // Otherwise, render the signup page
+  res.render("signup");
 });
 
 module.exports = router;

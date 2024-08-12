@@ -1,2 +1,17 @@
 DROP DATABASE IF EXISTS campaign_db;
 CREATE DATABASE campaign_db;
+
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE characters (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  type VARCHAR(50) NOT NULL,
+  position JSONB NOT NULL,
+  user_id INTEGER REFERENCES users(id)
+);
