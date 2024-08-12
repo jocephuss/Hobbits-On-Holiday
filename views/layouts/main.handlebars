@@ -3,6 +3,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}</title>
+    {{#if loggedIn}}
+      <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+      <a href="/login">Login</a>
+    {{/if}}
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -11,6 +16,9 @@
   </head>
   <body>
     {{{body}}}
+    {{#if loggedIn}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="/js/character.js"></script>
   </body>
