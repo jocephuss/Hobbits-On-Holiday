@@ -1,0 +1,10 @@
+<div id="home">
+  <h1>Welcome to the Homepage</h1>
+
+  {{#if logged_in}}
+    <p>You are logged in.</p>
+    <a href="/character">Go to Character Creation</a>
+  {{else}}
+    <p>Please <a href="/login">login</a> or <a href="/signup">sign up</a>.</p>
+  {{/if}}
+</div>

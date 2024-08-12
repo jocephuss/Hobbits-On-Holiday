@@ -1,7 +1,10 @@
 [
-    {
-        "name": "",
-        "email": "",
-        "password": ""
-    }
+  {
+    "username": "john_doe",
+    "password": "password123"
+  },
+  {
+    "username": "jane_doe",
+    "password": "password456"
+  }
 ]

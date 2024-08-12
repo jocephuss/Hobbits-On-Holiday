@@ -61,7 +61,6 @@ h3 {
   margin: 5px;
   border-radius: 5px;
   padding: 5px;
-  color: white;
 }
 
 #character-type {
@@ -72,6 +71,61 @@ h3 {
 
 button {
   margin: 5px;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgba(128, 128, 128, 0.819);
+  color: white;
+}
+
+#login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgba(128, 128, 128, 0.819);
+  color: white;
+}
+
+#signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgba(128, 128, 128, 0.819);
+  color: white;
+}
+#signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.819);
+  color: white;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.819);
+  color: white;
+}
+
+#home {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
   border-radius: 5px;
   padding: 5px;
   background-color: rgba(128, 128, 128, 0.819);
