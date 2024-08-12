@@ -1,7 +1,10 @@
 [
   {
-    "name": "Admin",
-    "email": "ashleigh.corse@gmail.com",
-    "password": "password12345"
+    "username": "john_doe",
+    "password": "password123"
+  },
+  {
+    "username": "jane_doe",
+    "password": "password456"
   }
 ]
