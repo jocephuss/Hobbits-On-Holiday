@@ -6,17 +6,17 @@ class Character extends Model {}
 Character.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER, // Auto-incrementing primary key
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, // Character's name
       allowNull: false,
     },
     type: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, // Character's type
       allowNull: false,
     },
     position: {
@@ -24,7 +24,7 @@ Character.init(
       allowNull: false,
     },
     user_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER, // Foreign key referencing the user table
       references: {
         model: "user",
         key: "id",
