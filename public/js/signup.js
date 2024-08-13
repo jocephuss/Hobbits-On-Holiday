@@ -1,20 +1,21 @@
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
-  const username = document.querySelector("#username-signup").value.trim();
-  const password = document.querySelector("#password-signup").value.trim();
+  const newUsername = document.querySelector("#username-signup").value.trim();
+  const newPassword = document.querySelector("#password-signup").value.trim();
 
-  if (username && password) {
+  if (newUsername && newPassword) {
     const response = await fetch("/api/users/signup", {
       method: "POST",
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ newPassword, newPassword }),
       headers: { "Content-Type": "application/json" },
     });
 
-    if (response.ok) {
-      document.location.replace("/character"); // Redirect to character creation page
-    } else {
+    if (!response.ok) {
       alert("Failed to sign up");
+    } else {
+      document.location.replace("/character"); // Redirect to character creation page
+      return newPassword, newUsername;
     }
   }
 };

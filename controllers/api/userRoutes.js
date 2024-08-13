@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const fs = require("fs");
 const { User } = require("../../models");
 
 router.post("/login", async (req, res) => {
@@ -39,13 +40,23 @@ router.post("/login", async (req, res) => {
 // Signup route
 router.post("/signup", async (req, res) => {
   try {
-    const userData = await User.create(req.body);
+    const userData = await User.create(req.body.username, req.body.password);
+    const currentData = JSON.parse(fs.readFileSync(userData, "UTF-8"));
+    currentData.push({
+      id: userData.id,
+      username: userData.username,
+      password: userData.password,
+      characters: [],
+    });
+    fs.writeFileSync(userDataPath, JSON.stringify(currentData, null, 2));
 
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
 
-      res.status(200).json({ message: "Signup successful!" });
+      res
+        .status(200)
+        .json({ user: currentData, message: "Signup successful!" });
     });
   } catch (err) {
     res.status(400).json(err);
