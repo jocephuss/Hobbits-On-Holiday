@@ -30,16 +30,22 @@ User.init(
   },
   {
     hooks: {
-      beforeCreate: async (newPassword) => {
-        const parsedNewPassword = JSON.parse(newPassword);
-        newPassword = await bcrypt.hash(newPassword, 10);
-        User.append(newPassword);
-        return User;
+      beforeCreate: async (newUserData) => {
+        if (newUserData.password) {
+          // Ensure password exists before hashing
+          newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        }
+        return newUserData;
       },
-      beforeCreate: async (newUsername) => {
-        const parsedNewUsername = JSON.parse(newUsername);
-        User.append(newUserPassword);
-        return User;
+      beforeUpdate: async (updatedUserData) => {
+        if (updatedUserData.password) {
+          // Ensure password exists before hashing
+          updatedUserData.password = await bcrypt.hash(
+            updatedUserData.password,
+            10
+          );
+        }
+        return updatedUserData;
       },
     },
     sequelize,

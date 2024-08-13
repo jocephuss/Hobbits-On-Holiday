@@ -6,5 +6,15 @@
   {
     "username": "jane_doe",
     "password": "password456"
+  },
+  {
+    "id": 3,
+    "username": "bozo",
+    "characters": []
+  },
+  {
+    "id": 4,
+    "username": "frog",
+    "characters": []
   }
 ]
