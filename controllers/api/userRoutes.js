@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const { User } = require("../../models");
+const fs = require("fs");
+const path = require("path");
+const userDataPath = path.join(__dirname, "../../seeds/userData.json");
 
 router.post("/login", async (req, res) => {
   try {
@@ -40,6 +43,15 @@ router.post("/login", async (req, res) => {
 router.post("/signup", async (req, res) => {
   try {
     const userData = await User.create(req.body);
+
+    // Save user data to userData.json
+    const currentData = JSON.parse(fs.readFileSync(userDataPath, "utf-8"));
+    currentData.push({
+      id: userData.id,
+      username: userData.username,
+      password: userData.password_hash,
+    });
+    fs.writeFileSync(userDataPath, JSON.stringify(currentData, null, 2));
 
     req.session.save(() => {
       req.session.user_id = userData.id;
