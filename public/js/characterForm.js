@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .bindPopup(`<b>${characterName}</b><br>${characterType}`)
         .openPopup();
 
-      const response = await fetch("/characterRoutes", {
+      const response = await fetch("/api/character", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (response.ok) {
+        document.location.replace("/character"); // Redirect to character detail page
         const newCharacter = await response.json();
         marker.options.characterId = newCharacter.id; // Set the ID for future updates
       } else {
