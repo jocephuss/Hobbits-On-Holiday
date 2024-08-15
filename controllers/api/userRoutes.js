@@ -41,6 +41,7 @@ router.post("/login", async (req, res) => {
 
 // Signup route
 router.post("/signup", async (req, res) => {
+  console.log("test2");
   try {
     const userData = await User.create(req.body);
 
@@ -60,6 +61,7 @@ router.post("/signup", async (req, res) => {
       res.status(200).json({ message: "Signup successful!" });
     });
   } catch (err) {
+    console.log("test3");
     res.status(400).json(err);
   }
 });
