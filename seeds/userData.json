@@ -18,5 +18,15 @@
     "id": 4,
     "username": "Kuec",
     "password": "$2b$10$Bb7lNyCe5if5CR1TKghZ7ezxETPDaD.4BSlewWOCdsrlSlTrFvFA."
+  },
+  {
+    "id": 5,
+    "username": "user",
+    "password": "$2b$10$Loy537JpgegdcrpaoX4TeOb5npIEDS3NexxATN0LpWAxcdmKWYXJC"
+  },
+  {
+    "id": 6,
+    "username": "me",
+    "password": "$2b$10$I6HN2MSiNv2IbitQ7JQlyuNi.Qy8MQuOf7ZI2i92QzNk77.hb/R6i"
   }
 ]
