@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .bindPopup(`<b>${characterName}</b><br>${characterType}`)
         .openPopup();
 
-      const response = await fetch("/api/characters", {
+      const response = await fetch("/characterRoutes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

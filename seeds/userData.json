@@ -1,0 +1,22 @@
+[
+  {
+    "id": 24,
+    "username": "Admin_1",
+    "password": "password123"
+  },
+  {
+    "id": 37,
+    "username": "Jocephus",
+    "password": "$2b$10$N/H2eb91V60Tu0UjOCM9qOccUwbn/34nBGtNIdcCzhDbr6O0NkX2."
+  },
+  {
+    "id": 10,
+    "username": "asd",
+    "password": "$2b$10$hV96/mRHKUIsKm5eofhpbeurhnMzT2Aqz99JsRixYE/t6v2OaSAym"
+  },
+  {
+    "id": 1,
+    "username": "chris",
+    "password": "$2b$10$z9IPsrN93LCAdD7ulgdaEe.T/JbeXKeBOth8NyBq4mVPuNsX.7/6C"
+  }
+]

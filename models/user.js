@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 
 
 class User extends Model {
+  // Add a method to check password validity
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
@@ -15,12 +16,12 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true, // Ensure auto-increment is enabled
     },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true, // Ensure the username is unique
     },
     password: {
       type: DataTypes.STRING,
@@ -29,21 +30,16 @@ User.init(
   },
   {
     hooks: {
+      // Hook to hash the password before saving it to the database
       beforeCreate: async (newUserData) => {
-        if (newUserData.password) {
-          // Ensure password exists before hashing
-          newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        }
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
       beforeUpdate: async (updatedUserData) => {
-        if (updatedUserData.password) {
-          // Ensure password exists before hashing
-          updatedUserData.password = await bcrypt.hash(
-            updatedUserData.password,
-            10
-          );
-        }
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
         return updatedUserData;
       },
     },
