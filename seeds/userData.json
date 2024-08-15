@@ -1,10 +1,22 @@
 [
   {
-    "username": "john_doe",
+    "id": 1,
+    "username": "Admin_1",
     "password": "password123"
   },
   {
-    "username": "jane_doe",
+    "id": 2,
+    "username": "Admin_2",
     "password": "password456"
+  },
+  {
+    "id": 3,
+    "username": "ashl",
+    "password": "$2b$10$HmFp2b2p5H6E8mG5sbW9tu4nq6/GOUULJRlGx00eChE.tk8XDvhkq"
+  },
+  {
+    "id": 4,
+    "username": "Kuec",
+    "password": "$2b$10$Bb7lNyCe5if5CR1TKghZ7ezxETPDaD.4BSlewWOCdsrlSlTrFvFA."
   }
 ]

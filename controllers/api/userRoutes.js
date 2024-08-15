@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const fs = require("fs");
 const { User } = require("../../models");
 const fs = require("fs");
 const path = require("path");
@@ -43,22 +42,14 @@ router.post("/login", async (req, res) => {
 // Signup route
 router.post("/signup", async (req, res) => {
   try {
-    const userData = await User.create(req.body.username, req.body.password);
-    let currentData = JSON.parse(fs.readFileSync(userData, "UTF-8"));
+    const userData = await User.create(req.body);
+
+    // Save user data to userData.json
+    const currentData = JSON.parse(fs.readFileSync(userDataPath, "utf-8"));
     currentData.push({
       id: userData.id,
       username: userData.username,
       password: userData.password,
-      characters: [],
-    });
-    fs.writeFileSync(userDataPath, JSON.stringify(currentData, null, 2));
-
-    // Save user data to userData.json
-    currentData = JSON.parse(fs.readFileSync(userDataPath, "utf-8"));
-    currentData.push({
-      id: userData.id,
-      username: userData.username,
-      password: userData.password_hash,
     });
     fs.writeFileSync(userDataPath, JSON.stringify(currentData, null, 2));
 
@@ -66,9 +57,7 @@ router.post("/signup", async (req, res) => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
 
-      res
-        .status(200)
-        .json({ user: currentData, message: "Signup successful!" });
+      res.status(200).json({ message: "Signup successful!" });
     });
   } catch (err) {
     res.status(400).json(err);
