@@ -41,3 +41,9 @@ Character.init(
 );
 
 module.exports = Character;
+
+// for(int i = 0; i != num_hits; ++i) {
+//   int n = randomness::generator->get_random_int(0, static_cast<int>(indexes.size())-1);
+//   prng_seq[indexes[n]] = true;
+//   indexes.erase(indexes.begin() + n);
+// }

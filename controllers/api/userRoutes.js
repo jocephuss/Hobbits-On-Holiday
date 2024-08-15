@@ -49,7 +49,7 @@ router.post("/signup", async (req, res) => {
     currentData.push({
       id: userData.id,
       username: userData.username,
-      password: userData.password_hash,
+      password: userData.password,
     });
     fs.writeFileSync(userDataPath, JSON.stringify(currentData, null, 2));
 
