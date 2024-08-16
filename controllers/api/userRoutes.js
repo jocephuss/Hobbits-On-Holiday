@@ -42,10 +42,13 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+// Login route
 router.post("/login", async (req, res) => {
   try {
+    // Find the user by their username
     const userData = await User.findOne({
       where: { username: req.body.username },
+      // Include the password field to check the password
     });
 
     if (!userData) {
@@ -58,11 +61,13 @@ router.post("/login", async (req, res) => {
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
+      // Check if the password is correct
       res
         .status(400)
         .json({ message: "Incorrect username or password, please try again" });
       return;
     }
+    // Save user session
 
     req.session.save(() => {
       req.session.user_id = userData.id;
@@ -77,6 +82,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Logout route
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

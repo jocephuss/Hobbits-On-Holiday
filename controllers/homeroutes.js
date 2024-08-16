@@ -1,17 +1,18 @@
 const router = require("express").Router();
 const { Character } = require("../models");
 const withAuth = require("../utils/auth");
-
+// Character creation route
 router.get("/character", withAuth, async (req, res) => {
   try {
+    // Retrieve all characters associated with the logged-in user
     const characterData = await Character.findAll({
       where: { user_id: req.session.user_id },
     });
-
+    // Map the character data to plain objects for easier rendering
     const characters = characterData.map((character) =>
       character.get({ plain: true })
     );
-
+    // Render the character page with the retrieved characters and the logged-in status
     res.render("character", {
       characters,
       logged_in: req.session.logged_in,
@@ -44,8 +45,6 @@ router.get("/login", (req, res) => {
   // Otherwise, render the login page
   res.render("login");
 });
-
-// Other routes...
 
 // Signup route
 router.get("/signup", (req, res) => {
