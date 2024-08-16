@@ -5,13 +5,13 @@
     "password": "password123"
   },
   {
-    "id": 4,
-    "username": "jojohobo",
-    "password": "$2b$10$mBl1L14MOv28qAkq44s4oeHVVA2/iqyd831HqpVPIak6zFP5Je4zO"
+    "id": 30,
+    "username": "frank",
+    "password": "$2b$10$Wg4x/2JorIQyt5irb5DZveDZP6OLQZ/xeeM/WSyIKhg525v.5giC6"
   },
   {
     "id": 2,
-    "username": "A",
-    "password": "$2b$10$wf8Sp3ZLR9Flgl03NfYFoOC8TjQjW97NlPaJHsUfZwWjdprQ7Drt."
+    "username": "bozo",
+    "password": "$2b$10$ooTun7quMn5R0DwB68TnIeKIthSuN2dz9e2OyL0ukl9yEyD1olUIK"
   }
 ]
