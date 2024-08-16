@@ -71,6 +71,7 @@ router.get("/:id", withAuth, async (req, res) => {
     }
     // Fetch the character data from characterData.json
     const character = characterData.get({ plain: true });
+    //
 
     res.status(200).json(character);
   } catch (err) {
@@ -117,4 +118,31 @@ router.put("/:id", withAuth, async (req, res) => {
     });
   }
 });
+
+router.delete("/:id", withAuth, async (req, res) => {
+  try {
+    const deletedCharacter = await Character.destroy({
+      where: { id: req.params.id, user_id: req.session.user_id }, // Ensure the character belongs to the current user
+    });
+    // Check if the character was found in the database
+    if (!deletedCharacter) {
+      res.status(404).json({ message: "No character found with this id!" });
+      return;
+    }
+    // Read the current character data from characterData.json
+    let currentData = JSON.parse(fs.readFileSync(characterDataPath, "utf-8"));
+    currentData = currentData.filter(
+      (characterDataPath) => characterDataPath.id !== parseInt(req.params.id)
+    );
+    // Save updated data back to characterData.json
+    fs.writeFileSync(characterDataPath, JSON.stringify(currentData, null, 2));
+    res.status(200).json({ message: "Character deleted successfully!" });
+  } catch (err) {
+    console.error("Error while deleting character:", err);
+    res
+      .status(500)
+      .json({ message: "Failed to delete character", error: err.message });
+  }
+});
+
 module.exports = router;
