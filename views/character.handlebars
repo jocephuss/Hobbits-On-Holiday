@@ -1,4 +1,4 @@
-<div class="character-selection">
+{{!-- <div class="character-selection">
   <h3>Select Your Character</h3>
   <form id="character-form">
     <label for="character-name">Name:</label>
@@ -23,4 +23,37 @@
 </script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="./js/characterForm.js"></script>
+<script src="/js/logout.js"></script> --}}
+
+<div class="character-selection">
+  <h3>Select Your Character</h3>
+  <form id="character-form">
+    <label for="character-name">Name:</label>
+    <input type="text" id="character-name" name="character-name" required />
+
+    <label for="character-type">Type:</label>
+    <select id="character-type" name="character-type" required>
+      <option value="warrior">Warrior</option>
+      <option value="wizard">Wizard</option>
+      <option value="archer">Archer</option>
+    </select>
+
+    <button type="submit">Create Character</button>
+  </form>
+  <button id="logout">Log out</button>
+  <div id="existing-characters">
+    {{#each characters}}
+      <div class="character-card">
+        <p>Name: {{this.name}}</p>
+        <p>Type: {{this.type}}</p>
+        <button class="place-character" data-id="{{this.id}}">Place on Map</button>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="/js/characterForm.js"></script>
 <script src="/js/logout.js"></script>

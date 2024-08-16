@@ -3,15 +3,5 @@
     "id": 24,
     "username": "Admin_1",
     "password": "password123"
-  },
-  {
-    "id": 30,
-    "username": "frank",
-    "password": "$2b$10$Wg4x/2JorIQyt5irb5DZveDZP6OLQZ/xeeM/WSyIKhg525v.5giC6"
-  },
-  {
-    "id": 2,
-    "username": "bozo",
-    "password": "$2b$10$ooTun7quMn5R0DwB68TnIeKIthSuN2dz9e2OyL0ukl9yEyD1olUIK"
   }
 ]
