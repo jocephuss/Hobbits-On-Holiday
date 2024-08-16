@@ -21,26 +21,24 @@ router.post("/", withAuth, async (req, res) => {
 
     console.log("Character created:", newCharacter);
 
-    // Update userData.json with the new character
-    // const currentData = JSON.parse(fs.readFileSync(characterDataPath, "utf-8"));
-    // console.log("Current characterData.json data:", currentData);
+    const currentData = JSON.parse(fs.readFileSync(userDataPath, "utf-8"));
+    console.log("Current userData.json data:", currentData);
 
-    // const characterIndex = currentData.findIndex(
-    //   (character) => character.id === req.session.character_id
-    // );
-    // if (characterIndex > -1) {
-    //   currentData[characterIndex].characters.push({
-    //     id: newCharacter.id,
-    //     name: newCharacter.name,
-    //     type: newCharacter.type,
-    //     position: newCharacter.position,
-    //   });
-    //   fs.writeFileSync(characterDataPath, JSON.stringify(currentData, null, 2));
-    //   console.log("Updated characterData.json data:", currentData);
-    // } else {
-    //   console.log("User not found in userData.json");
-    // }
-
+    const userIndex = currentData.findIndex(
+      (user) => user.id === req.session.user_id
+    );
+    if (userIndex > -1) {
+      currentData[userIndex].characters.push({
+        id: newCharacter.id,
+        name: newCharacter.name,
+        type: newCharacter.type,
+        position: newCharacter.position,
+      });
+      fs.writeFileSync(userDataPath, JSON.stringify(currentData, null, 2));
+      console.log("Updated userData.json data:", currentData);
+    } else {
+      console.log("User not found in userData.json");
+    }
     res.status(200).json(newCharacter);
   } catch (err) {
     console.error("Error while creating character:", err);
