@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
           position: marker.getLatLng(), // Ensure this sends {lat: x, lng: y}
         }),
       });
-
+ 
       if (response.ok) {
         document.location.replace("/character"); // Redirect to character detail page
         const newCharacter = await response.json();
