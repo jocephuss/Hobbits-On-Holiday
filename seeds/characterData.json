@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Josiah",
+    "type": "warrior",
+    "position": {
+      "lat": -137.35549224548686,
+      "lng": 231.04714075270442
+    },
+    "user_id": 3
+  },
+  {
+    "id": 2,
+    "name": "Josiah Rowland",
+    "type": "wizard",
+    "position": {
+      "lat": -137.35549224548686,
+      "lng": 231.04714075270442
+    },
+    "user_id": 3
+  }
+]

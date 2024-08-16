@@ -21,7 +21,7 @@ Character.init(
     },
     position: {
       type: DataTypes.JSON, // Store the position as JSON { lat: x, lng: y }
-      allowNull: false,
+      allowNull: true,
     },
     user_id: {
       type: DataTypes.INTEGER, // Foreign key referencing the user table
