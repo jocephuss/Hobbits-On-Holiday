@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize the map
-  let map = L.map("map", {
+  /*let map = L.map("map", {
     center: [0, 0],
     zoom: 1,
     crs: L.CRS.Simple,
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ).addTo(map);
 
   map.fitBounds(bounds);
-
+*/
   // Handle character creation
   document
     .getElementById("character-form")

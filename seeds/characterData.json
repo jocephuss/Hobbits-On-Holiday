@@ -18,5 +18,25 @@
       "lng": 231.04714075270442
     },
     "user_id": 3
+  },
+  {
+    "id": 12,
+    "name": "Merri",
+    "type": "warrior",
+    "position": {
+      "lat": -137.5,
+      "lng": 231.25
+    },
+    "user_id": 1
+  },
+  {
+    "id": 13,
+    "name": "Pippin",
+    "type": "warrior",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "user_id": 1
   }
 ]

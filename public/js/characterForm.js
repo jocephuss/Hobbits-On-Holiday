@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify({
           name: characterName,
           type: characterType,
+          position: {x:0, y:0}
         }),
       });
       // If the POST request is successful, display the character details and enable placing on the map
@@ -58,8 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const newCharacter = await response.json();
 
         // Display character details in the div
-        document.getElementById("display-name").innerText = newCharacter.name;
-        document.getElementById("display-type").innerText = newCharacter.type;
+        //document.getElementById("display-name").innerText = newCharacter.name;
+        //document.getElementById("display-type").innerText = newCharacter.type;
 
         document.getElementById("character-details").style.display = "block";
         document.getElementById("character-form").style.display = "none";
