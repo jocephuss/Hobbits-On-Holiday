@@ -22,10 +22,10 @@
         <img src="./images/Hobbit.jpg" alt="Hobbit" width="100" height="100" />
         <p>Name: {{this.name}}</p>
         <p>Type: {{this.type}}</p>
-        
+
         <button class="place-character" data-id="{{this.id}}">Place on Map</button>
         <button class="delete-character" data-id="{{this.id}}">Delete</button>
-        <button class="encounter" id = "encounter">Encounter</button> 
+        <button class="encounter" id="encounter">Encounter</button>
       </div>
     {{/each}}
   </div>
@@ -40,6 +40,6 @@
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="/js/encounter.js"></script>  
+<script src="/js/encounter.js"></script>
 <script src="/js/characterForm.js"></script>
 <script src="/js/logout.js"></script>
