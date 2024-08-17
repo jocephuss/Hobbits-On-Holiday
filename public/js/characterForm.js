@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
           position: {x:0, y:0}
         }),
       });
-
+ 
       if (response.ok) {
         const newCharacter = await response.json(); // Get the new character from the response
 
