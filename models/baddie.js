@@ -7,5 +7,14 @@ Baddie.init(
         type: DataTypes.STRING, // baddie's name
         allowNull: false,
       },
+      image: {
+        type: DataTypes.STRING, // image url
+        allowNull: false,
+
+      }, 
+      hitPoints: {
+        type: DataTypes.INTEGER, // baddie's hit points
+        allowNull: false,
+      }
 
 )
