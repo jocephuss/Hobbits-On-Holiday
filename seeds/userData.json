@@ -13,5 +13,10 @@
     "id": 2,
     "username": "bozo",
     "password": "$2b$10$ooTun7quMn5R0DwB68TnIeKIthSuN2dz9e2OyL0ukl9yEyD1olUIK"
+  },
+  {
+    "id": 4,
+    "username": "Kuec",
+    "password": "$2b$10$1G28J276c5p8pcdT66yZtOw2qDqMeipNgumcNAC13JBwp2LmVqO7m"
   }
 ]
