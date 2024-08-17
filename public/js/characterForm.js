@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Send JSON object with character name and type
           name: characterName,
           type: characterType,
+          position: {x:0, y:0}
         }),
       });
 

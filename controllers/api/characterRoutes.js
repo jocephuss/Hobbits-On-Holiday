@@ -33,6 +33,7 @@ router.post("/", withAuth, async (req, res) => {
     const newCharacter = await Character.create({
       name: req.body.name,
       type: req.body.type,
+      position: req.body.position,
       user_id: req.session.user_id,
     });
 
