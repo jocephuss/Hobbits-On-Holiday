@@ -1,7 +1,10 @@
 
 
 document
-    .getElementById('encounter')
-    .addEventListener('click', 
-        
-        console.log('Encounter form submitted'));
+    .querySelectorAll('#encounter').forEach((button) => {
+        button.addEventListener('click', async function () {
+            console.log('Encounter form submitted')
+    })
+});
+    
+  
