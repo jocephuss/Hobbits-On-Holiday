@@ -5,18 +5,8 @@
     "password": "password123"
   },
   {
-    "id": 30,
-    "username": "frank",
-    "password": "$2b$10$Wg4x/2JorIQyt5irb5DZveDZP6OLQZ/xeeM/WSyIKhg525v.5giC6"
-  },
-  {
-    "id": 2,
-    "username": "bozo",
-    "password": "$2b$10$ooTun7quMn5R0DwB68TnIeKIthSuN2dz9e2OyL0ukl9yEyD1olUIK"
-  },
-  {
-    "id": 4,
-    "username": "Kuec",
-    "password": "$2b$10$1G28J276c5p8pcdT66yZtOw2qDqMeipNgumcNAC13JBwp2LmVqO7m"
+    "id": 1,
+    "username": "chris",
+    "password": "$2b$10$GhAO82WGA8rXdqQrlG9x8un1qJmhIgmW8AyxLSRM2MWHOAsWxUph6"
   }
 ]

@@ -21,7 +21,7 @@ Character.init(
     },
     position: {
       type: DataTypes.JSON, // Store the position as JSON { lat: x, lng: y }
-      allowNull: false,
+      allowNull: true,
     },
     user_id: {
       type: DataTypes.INTEGER, // Foreign key referencing the user table
@@ -41,9 +41,3 @@ Character.init(
 );
 
 module.exports = Character;
-
-// for(int i = 0; i != num_hits; ++i) {
-//   int n = randomness::generator->get_random_int(0, static_cast<int>(indexes.size())-1);
-//   prng_seq[indexes[n]] = true;
-//   indexes.erase(indexes.begin() + n);
-// }
