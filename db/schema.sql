@@ -15,3 +15,9 @@ CREATE TABLE characters (
   position JSONB NOT NULL,
   user_id INTEGER REFERENCES users(id)
 );
+CREATE TABLE baddie {
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  index VARCHAR(50) NOT NULL,
+  position JSONB NOT NULL,
+}

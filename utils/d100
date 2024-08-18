@@ -1,8 +1,0 @@
-const d100 = [];
-
-for (let i = 0; i < 100; i++) {
-  d100[i] = i + 1;
-}
-
-const roll = d100[Math.floor(Math.random() * 100)];
-console.log(roll);
