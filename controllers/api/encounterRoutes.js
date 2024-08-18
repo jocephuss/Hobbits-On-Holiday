@@ -2,11 +2,10 @@ const router = require("express").Router();
 const fs = require("fs");
 const path = require("path");
 const { Baddie } = require("../../models");
-const withAuth = require("../../utils/auth");
-const dice = require("../../utils/d20.js");
-const baddieDataPath = path.join(__dirname, "../../seeds/baddieData.json");
-// Route to create a new baddie
-async function readBaddieData() {
+const baddieDataPath = path.join(__dirname, "../../data/baddieData.json");
+
+// Route to create a new character
+function readBaddieData() {
   if (!fs.existsSync(baddieDataPath)) {
     console.error("baddieData.json file not found.");
     return;
