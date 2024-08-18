@@ -1,6 +1,7 @@
 document.querySelectorAll("#encounter").forEach((button) => {
   button.addEventListener("click", async function () {
     console.log("Encounter form submitted");
+
     const myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
 
@@ -9,6 +10,7 @@ document.querySelectorAll("#encounter").forEach((button) => {
       headers: myHeaders,
       redirect: "follow",
     };
+
     const possibleBaddies = [
       "animated-armor",
       "brass-dragon-wyrmling",
@@ -33,12 +35,14 @@ document.querySelectorAll("#encounter").forEach((button) => {
       "spy",
       "tiger",
     ];
-    const thisBaddie =
-      possibleBaddies[Math.floor(Math.random() * possibleBaddies.length + 1)];
 
-    fetch("https://www.dnd5eapi.co/api/monsters/dryad", requestOptions)
+    const thisBaddie =
+      possibleBaddies[Math.floor(Math.random() * possibleBaddies.length)];
+
+    // Fetch data for the randomly selected baddie
+    fetch(`https://www.dnd5eapi.co/api/monsters/${thisBaddie}`, requestOptions)
       .then(function (response) {
-        // Check if the response is successful (status code 200-299)
+        // Check if the response is successful
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }
@@ -47,75 +51,51 @@ document.querySelectorAll("#encounter").forEach((button) => {
       })
       .then(function (data) {
         console.log(data.index);
-        filterData(data);
+        const characterCard = button.closest(".character-card"); // Find the closest character card
+        renderEncounter(characterCard, data); // Render the encounter data to the card
       })
       .catch(function (error) {
-        // add this to the dom somewhere
         console.error(error);
       });
   });
 });
 
-function filterData(data) {
-  const name = data.name;
-  const size = data.size;
-  const type = data.type;
-  const alignment = data.alignment;
-  const ac = data.ac;
-  const hitPoints = data.hit_points;
-  const hitDice = data.hit_dice;
-  const speed = data.speed;
-  const strength = data.strength;
-  const abilities = data.abilities;
-  const proficiencies = data.proficiencies;
-  const challengeRating = data.challenge_rating;
-  const baddieUrl = data.image;
-  const baddieStats = [
-    name,
-    size,
-    type,
-    alignment,
-    ac,
-    hitPoints,
-    hitDice,
-    speed,
-    strength,
-    abilities,
-    proficiencies,
-    challengeRating,
-    baddieUrl,
-  ];
+function renderEncounter(characterCard, data) {
+  const baddieStats = {
+    name: data.name,
+    size: data.size,
+    type: data.type,
+    alignment: data.alignment,
+    // ac: data.armor_class, //kept getting [object Object] instead of the actual number
+    hitPoints: data.hit_points,
+    hitDice: data.hit_dice,
+    speed: data.speed,
+    strength: data.strength,
+    abilities: data.abilities,
+    proficiencies: data.proficiencies,
+    challengeRating: data.challenge_rating,
+    baddieUrl: data.image,
+  };
+
   console.log(baddieStats);
-  document
-    .getElementById("baddieImage")
-    .addEventListener("DOMContentLoaded", async function () {
-      const baddieImage = document.getElementById("#baddie-image");
-      const baddieUrl = baddieStats.pop();
-      baddieImage.img((src = `https://www.dnd5eapi.co${baddieUrl}`));
-    });
 
-  document
-    .getElementById("dice-button")
-    .addEventListener("click", async function () {
-      console.log("You roll");
-      const d20 = [];
-      for (let i = 0; i < 20; i++) {
-        d20[i] = i + 1;
-      }
-      const d20roll = d20[Math.floor(Math.random() * 20)];
-      console.log(d20roll);
-      // const d20RollElement = document.querySelectorAll("#d20-roll");
-      // d20RollElement.textContent(d20roll);
-
-      // const response = await fetch("/api/encounter", {
-      //   method: "POST",
-      //   body: JSON.stringify({
-      //     baddieStats: baddieStats,
-      //     // position: marker.getLatLng(), // Ensure this sends {lat: x, lng: y}
-      //   }),
-      //   headers: { "Content-Type": "application/json" },
-      // });
-      document.location.replace("/character"); // Redirect to character creation page
-      return baddieStats, d20roll;
-    });
+  // Create HTML content for the baddie details
+  const encounterHtml = `
+    <div class="baddie-details">
+      <h4>Encounter: ${baddieStats.name}</h4>
+      <img src="https://www.dnd5eapi.co${baddieStats.baddieUrl}" alt="${
+    baddieStats.name
+  }" />
+      <p>Type: ${baddieStats.type}</p>
+      
+      <p>HP: ${baddieStats.hitPoints}</p>
+      <p>Speed: ${baddieStats.speed.walk || baddieStats.speed}</p>
+      <p>Challenge Rating: ${baddieStats.challengeRating}</p>
+    </div>
+  `;
+  //  <p>AC: ${baddieStats.ac}</p> //kept getting [object Object] instead of the actual number
+  // Append the encounter HTML to the character card
+  if (characterCard) {
+    characterCard.innerHTML += encounterHtml;
+  }
 }
