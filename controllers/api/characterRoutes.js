@@ -110,6 +110,7 @@ router.put("/:id", withAuth, async (req, res) => {
     }
     // Send the updated character data back to the client
     res.status(200).json(updatedCharacter);
+    document.location.replace("/character"); // Redirect to character creation page
   } catch (err) {
     console.error("Error while updating character position:", err);
     res.status(500).json({

@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const fs = require("fs");
 const path = require("path");
-const withAuth = require("../../utils/auth");
 const { Baddie } = require("../../models");
 const dice = require("../../utils/d20.js");
 const baddieDataPath = path.join(__dirname, "../../seeds/baddieData.json");
@@ -54,8 +53,17 @@ router.post("/", withAuth, async (req, res) => {
     console.error("Error while creating baddie:", error);
     res.status(500).json({ message: "Failed to create baddie", error: error.message });
   }
-});
-// Call the readBaddieData function to build the database
-readBaddieData();
+}
+
+// // encounter route
+// router.post("/encounter", (req, res) => {
+//   if (req.session.logged_in) {
+//     req.session.destroy(() => {
+//       res.status(204).end();
+//     });
+//   } else {
+//     res.status(404).end();
+//   }
+// });
 
 module.exports = router;

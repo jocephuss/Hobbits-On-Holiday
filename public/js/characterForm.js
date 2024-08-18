@@ -47,10 +47,10 @@ document.addEventListener("DOMContentLoaded", function () {
           // Send JSON object with character name and type
           name: characterName,
           type: characterType,
-          position: {x:0, y:0}
+          position: { x: 0, y: 0 },
         }),
       });
- 
+
       if (response.ok) {
         const newCharacter = await response.json(); // Get the new character from the response
 
@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         alert("Failed to save character.");
       }
+      document.location.replace("/character"); // Redirect to character creation page
     });
 
   // Handle placing existing characters on the map

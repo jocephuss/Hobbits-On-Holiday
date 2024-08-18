@@ -5,13 +5,8 @@
     "password": "password123"
   },
   {
-    "id": 1,
-    "username": "chris",
-    "password": "$2b$10$GhAO82WGA8rXdqQrlG9x8un1qJmhIgmW8AyxLSRM2MWHOAsWxUph6"
-  },
-  {
-    "id": 3,
-    "username": "ash",
-    "password": "$2b$10$IUV5O.oDn5H1K5jcdika6eh..mwtmF1vpKkZWgB8ESgNR7opOl7mS"
+    "id": 6,
+    "username": "user",
+    "password": "$2b$10$0tRBFsrsR0oYrx.m7UUqnOygMI2CdKDk.R/G59sb3Z7vJYPxgynU."
   }
 ]
