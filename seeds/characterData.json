@@ -8,5 +8,15 @@
       "lng": 231.25
     },
     "user_id": 1
+  },
+  {
+    "id": 7,
+    "name": "b",
+    "type": "warrior",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "user_id": 6
   }
 ]
