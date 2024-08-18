@@ -6,6 +6,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sequelize = require("./config/connection");
 const helpers = require("./utils/helpers"); // Import helpers
+// const dice = require("./utils/d20"); // Import dice.js
 const routes = require("./controllers");
 
 const app = express();
