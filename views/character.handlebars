@@ -21,7 +21,7 @@
     {{#each characters}}
       <div class="character-card" id="character-{{this.id}}">
         <img src="./images/Hobbit.jpg" alt="Hobbit" width="100" height="100" />
-        <img src="https://www.dnd5eapi.co{{baddieImage}}" alt=baddieName width="100" height="100" />
+        <img src={{ baddieImage }} alt="{{baddieName}}" width="100" height="100" />
         <p>Name: {{this.name}}</p>
         <p>Type: {{this.type}}</p>
 

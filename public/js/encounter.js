@@ -44,17 +44,28 @@ fetch(`https://www.dnd5eapi.co/api/monsters/dryad`, requestOptions)
   .then((data) => {
     const result = data;
     console.log(result);
-    const baddieImage = result.image;
+    const baddieImage = `https://www.dnd5eapi.co${result.image}`;
     const baddieName = result.name;
     const baddieHitPoints = result.hit_points;
     console.log(baddieImage);
-    //render('character', {baddieUrl, baddieName, baddieHitPoints});
-    console.log(baddieName);
-    console.log(baddieHitPoints);
+    renderTemplate({baddieImage, baddieHitPoints, baddieName }); ;
     
-})
+
+
+    function renderTemplate(baddieImage, baddieHitPoints, baddieName) {
+      console.log('you hit the renderTemplate function');
+      const context = { baddieImage, baddieHitPoints, baddieName };
+      const template = Handlebars.compile(`
+        <img src='{{baddieImage}}' alt='{{baddieName}}'>
+        <h2>{{baddieName}}</h2>
+        <p>Hit Points: {{baddieHitPoints}}</p>
+      `);
+      const html = template(context);
+      document.getElementById('baddie').innerHTML = html;
+        }})
 
   .catch((error) => console.error(error));
     })
 });
     
+
