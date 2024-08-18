@@ -2,7 +2,6 @@ const router = require("express").Router();
 const fs = require("fs");
 const path = require("path");
 const { Baddie } = require("../../models");
-const dice = require("../../utils/d20.js");
 const baddieDataPath = path.join(__dirname, "../../data/baddieData.json");
 
 // Route to create a new character

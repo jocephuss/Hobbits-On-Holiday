@@ -99,3 +99,28 @@ function renderEncounter(characterCard, data) {
     characterCard.innerHTML += encounterHtml;
   }
 }
+document.querySelectorAll("#d20").forEach((button) => {
+  button.addEventListener("click", async function () {
+    console.log("You roll");
+    const d20Card = button.closest(".d20-button");
+    let d20Value = document.querySelector(".d20-roll");
+    const d20 = [];
+
+    for (let i = 0; i < 20; i++) {
+      d20[i] = i + 1;
+    }
+
+    const d20roll = d20[Math.floor(Math.random() * 20)];
+    console.log(d20roll);
+    const diceHTML = `
+<div class="dice-roll">
+  <p class="dice-text">You rolled a ${d20roll}!</p>
+  </div>
+  `;
+
+    if (d20Value) {
+      d20Value.innerHTML = diceHTML;
+      // d20Value.innerHTML += diceHTML;
+    }
+  });
+});
