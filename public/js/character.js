@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let marker = L.marker(map.getCenter(), {
         draggable: true,
       }).addTo(map);
-
+      console.log('character placed');
       marker
         .bindPopup(`<b>${characterName}</b><br>${characterType}`)
         .openPopup();

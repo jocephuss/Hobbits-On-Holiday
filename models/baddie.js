@@ -13,9 +13,16 @@ Baddie.init(
     type: DataTypes.STRING, // image url
     allowNull: false,
   },
-  baddieHP,
+  baddieHitPoints,
   {
     type: DataTypes.INTEGER, // baddie's hit points
     allowNull: false,
-  }
+  }, 
+  {sequelize,
+  timestamps: false,
+  freezeTableName: true,
+  underscored: true,
+  modelName: "baddie",
+  },
 );
+module.exports = Baddie;
