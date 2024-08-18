@@ -19,6 +19,10 @@ Character.init(
       type: DataTypes.STRING, // Character's type
       allowNull: false,
     },
+    hp: {
+      type: DataTypes.INTEGER, // Character's health points
+      allowNull: false,
+    },
     position: {
       type: DataTypes.JSON, // Store the position as JSON { lat: x, lng: y }
       allowNull: true,

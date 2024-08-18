@@ -10,12 +10,12 @@
     "user_id": 1
   },
   {
-    "id": 9,
+    "id": 11,
     "name": "b",
     "type": "warrior",
     "position": {
-      "x": 0,
-      "y": 0
+      "lat": -137.5,
+      "lng": 231.25
     },
     "user_id": 6
   }
