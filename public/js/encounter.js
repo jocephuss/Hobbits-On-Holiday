@@ -5,6 +5,11 @@ document.querySelectorAll("#encounter").forEach((button) => {
     const myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
 
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
 
     const possibleBaddies = [
       "animated-armor",
@@ -94,6 +99,3 @@ function renderEncounter(characterCard, data) {
     characterCard.innerHTML += encounterHtml;
   }
 }
- 
-   
-  

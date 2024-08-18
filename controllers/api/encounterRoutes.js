@@ -2,6 +2,7 @@ const router = require("express").Router();
 const fs = require("fs");
 const path = require("path");
 const { Baddie } = require("../../models");
+const withAuth = require("../../utils/auth");
 const dice = require("../../utils/d20.js");
 const baddieDataPath = path.join(__dirname, "../../seeds/baddieData.json");
 // Route to create a new baddie
@@ -53,7 +54,7 @@ router.post("/", withAuth, async (req, res) => {
     console.error("Error while creating baddie:", error);
     res.status(500).json({ message: "Failed to create baddie", error: error.message });
   }
-}
+});
 
 // // encounter route
 // router.post("/encounter", (req, res) => {
