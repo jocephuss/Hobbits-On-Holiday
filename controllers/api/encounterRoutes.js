@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const fs = require("fs");
 const path = require("path");
-const { Character } = require("../../models");
+const { Baddie } = require("../../models");
 const dice = require("../../utils/d20.js");
 const baddieDataPath = path.join(__dirname, "../../data/baddieData.json");
 
@@ -24,5 +24,16 @@ function readBaddieData() {
     return []; // Return an empty array if parsing fails
   }
 }
+
+// // encounter route
+// router.post("/encounter", (req, res) => {
+//   if (req.session.logged_in) {
+//     req.session.destroy(() => {
+//       res.status(204).end();
+//     });
+//   } else {
+//     res.status(404).end();
+//   }
+// });
 
 module.exports = router;
