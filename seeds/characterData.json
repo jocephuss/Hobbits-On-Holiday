@@ -49,5 +49,16 @@
       "lng": 231.25
     },
     "user_id": 2
+  },
+  {
+    "id": 1,
+    "name": "Frodo",
+    "type": "warrior",
+    "hp": "100",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "user_id": 2
   }
 ]

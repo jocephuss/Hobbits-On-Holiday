@@ -95,7 +95,7 @@ return baddieStats.baddieUrl;
   const encounterHtml = `
     <div class="baddie-details" id="baddie-details">
       <h4>Encounter: </h4><h4 id="baddieName">${baddieStats.baddieName}</h4>
-      <img src="${baddieStats.baddieURL}" alt="${baddieStats.baddieName}" />
+      <img src="${baddieStats.baddieURL}" alt="${baddieStats.baddieName}" height ="100px" width="100px"/>
       
       <p>HP: </p><p id="baddie-hp">${baddieStats.baddieHP}</p>
       <p>Speed: ${baddieStats.speed.walk || baddieStats.speed}</p>
