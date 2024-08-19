@@ -22,6 +22,7 @@ function readBaddieData() {
     console.error("Failed to parse baddieData.json:", error);
     return []; // Return an empty array if parsing fails
   }
-}
+};
+
 
 module.exports = router;
