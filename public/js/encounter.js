@@ -52,7 +52,7 @@ document.querySelectorAll("#encounter").forEach((button) => {
       .then(function (data) {
         console.log(data.index);
         const characterCard = button.closest(".character-card"); // Find the closest character card
-        renderEncounter(characterCard, data); // Render the encounter data to the card
+        renderBaddie(characterCard, data); // Render the encounter data to the card
       })
       .catch(function (error) {
         console.error(error);
@@ -60,35 +60,34 @@ document.querySelectorAll("#encounter").forEach((button) => {
   });
 });
 
-function renderEncounter(characterCard, data) {
+function renderBaddie(characterCard, data) {
+  const baddieImage = data.image;
+
+  if (!baddieImage) {
+    baddieURL = "../images/nazgul.jpg";
+  } else {
+    baddieURL = `https://www.dnd5eapi.co${baddieImage}`;
+  }
   const baddieStats = {
-    name: data.name,
-    size: data.size,
-    type: data.type,
-    alignment: data.alignment,
-    // ac: data.armor_class, //kept getting [object Object] instead of the actual number
-    hitPoints: data.hit_points,
-    hitDice: data.hit_dice,
-    speed: data.speed,
-    strength: data.strength,
-    abilities: data.abilities,
-    proficiencies: data.proficiencies,
+    baddieName: data.name,
+    baddieIndex: data.index,
+    baddieURL: baddieURL,
+    baddieHP: data.hit_points,
+    speed: { walk: data.speed.walk || data.speed },
     challengeRating: data.challenge_rating,
-    baddieUrl: data.image,
+    position: { x: 0, y: 0 },
   };
+  const baddieName = baddieStats.baddieName;
 
   console.log(baddieStats);
 
   // Create HTML content for the baddie details
   const encounterHtml = `
-    <div class="baddie-details">
-      <h4>Encounter: ${baddieStats.name}</h4>
-      <img src="https://www.dnd5eapi.co${baddieStats.baddieUrl}" alt="${
-    baddieStats.name
-  }" />
-      <p>Type: ${baddieStats.type}</p>
+    <div class="baddie-details" id="baddie-details">
+      <h4>Encounter: </h4><h4 id="baddieName">${baddieStats.baddieName}</h4>
+      <img src="${baddieStats.baddieURL}" alt="${baddieStats.baddieName}" />
       
-      <p>HP: ${baddieStats.hitPoints}</p>
+      <p>HP: </p><p id="baddie-hp">${baddieStats.baddieHP}</p>
       <p>Speed: ${baddieStats.speed.walk || baddieStats.speed}</p>
       <p>Challenge Rating: ${baddieStats.challengeRating}</p>
     </div>
@@ -121,6 +120,22 @@ document.querySelectorAll("#d20").forEach((button) => {
     if (d20Value) {
       d20Value.innerHTML = diceHTML;
       // d20Value.innerHTML += diceHTML;
+    }
+    //lower baddie hp by d20roll
+    let baddieHP = document.getElementById("baddie-hp").textContent;
+    baddieHP = String(baddieHP);
+    baddieHP = parseInt(baddieHP);
+    baddieHP = baddieHP - d20roll;
+    console.log(typeof baddieHP);
+    console.log(baddieHP);
+    document.getElementById("baddie-hp").innerHTML = `${baddieHP}`;
+    if (baddieHP <= 0) {
+      let baddieName = document.getElementById("baddieName").textContent;
+      baddieName = String(baddieName);
+      console.log(`${baddieName} Defeated!`);
+      document.getElementById(
+        "baddie-details"
+      ).innerHTML = `<h3>${baddieName} is defeated!</h3>`;
     }
   });
 });

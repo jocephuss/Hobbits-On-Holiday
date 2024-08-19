@@ -33,6 +33,7 @@ router.post("/", withAuth, async (req, res) => {
     const newCharacter = await Character.create({
       name: req.body.name,
       type: req.body.type,
+      hp: req.body.hp,
       position: req.body.position,
       user_id: req.session.user_id,
     });
@@ -45,6 +46,7 @@ router.post("/", withAuth, async (req, res) => {
       id: newCharacter.id,
       name: newCharacter.name,
       type: newCharacter.type,
+      hp: newCharacter.hp,
       position: newCharacter.position,
       user_id: newCharacter.user_id,
     });
