@@ -23,4 +23,4 @@ Baddie.init({
     type: DataTypes.JSON, // Store the position as JSON { lat: x, lng: y }
     allowNull: true,
   },
-);
+});

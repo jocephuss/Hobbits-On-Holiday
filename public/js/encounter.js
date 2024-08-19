@@ -64,7 +64,7 @@ function renderBaddie(characterCard, data) {
   const baddieImage = data.image;
 
   if (!baddieImage) {
-    baddieURL = "../images/nazgul.jpg";
+    baddieURL = "../images/Nazgul.jpg";
   } else {
     baddieURL = `https://www.dnd5eapi.co${baddieImage}`;
   }
