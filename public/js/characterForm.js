@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
       let characterType = document // Get character type from the form
         .getElementById("character-type")
         .value.trim();
+      let characterHP = document // Get character health from the form
+        .getElementById("character-hp")
+        .value.trim();
+      console.log(characterHP);
 
       const response = await fetch("/api/character", {
         // Send POST request to create a new character
@@ -47,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Send JSON object with character name and type
           name: characterName,
           type: characterType,
+          hp: characterHP,
           position: { x: 0, y: 0 },
         }),
       });
@@ -64,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         characterDiv.innerHTML = `
           <p>Name: ${newCharacter.name}</p>
           <p>Type: ${newCharacter.type}</p>
+          <p>Health: ${newCharacter.hp}</p>
           <button class="place-character" data-id="${newCharacter.id}">Place on Map</button>
           <button class="delete-character" data-id="${newCharacter.id}">Delete</button>
         `;

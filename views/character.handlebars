@@ -11,6 +11,11 @@
       <option value="wizard">Wizard</option>
       <option value="archer">Archer</option>
     </select>
+    <label for="character-hp">Health:</label>
+    <select id="character-hp" name="character-hp" required>
+      <option value="100">100</option>
+      {{!-- <option value="200">200</option> --}}
+    </select>
 
     <button type="submit">Create Character</button>
   </form>
@@ -21,10 +26,9 @@
     {{#each characters}}
       <div class="character-card" id="character-{{this.id}}">
         <img src="./images/Hobbit.jpg" alt="Hobbit" width="100" height="100" />
-        {{!-- <img src="https://www.dnd5eapi.co{{baddieImage}}" alt=baddieName width="100" height="100" /> --}}
         <p>Name: {{this.name}}</p>
         <p>Type: {{this.type}}</p>
-
+        <p>Health: {{this.hp}}</p>
         <button class="place-character" data-id="{{this.id}}">Place on Map</button>
         <button class="delete-character" data-id="{{this.id}}">Delete</button>
         <button class="encounter" id="encounter">Encounter</button>
