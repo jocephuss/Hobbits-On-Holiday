@@ -28,5 +28,15 @@
       "lng": 231.22391744800106
     },
     "user_id": 1
+  },
+  {
+    "id": 17,
+    "name": "Hodor",
+    "type": "warrior",
+    "position": {
+      "lat": -137.5,
+      "lng": 231.25
+    },
+    "user_id": 2
   }
 ]

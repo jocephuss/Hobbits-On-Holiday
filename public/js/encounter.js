@@ -78,14 +78,23 @@ function renderEncounter(characterCard, data) {
   };
 
   console.log(baddieStats);
-
+  console.log(`Baddie URL: ${baddieStats.baddieUrl}`);
   // Create HTML content for the baddie details
+  if(!baddieStats.baddieUrl) {
+    console.log('this baddie aint gots no url');
+    console.log('====================');
+    
+    baddieStats.baddieUrl = './public/images/Nazgul.jpg'
+    console.log(`Replacement URL: ${baddieStats.baddieUrl}`);
+} else {
+  baddieUrl = `https://www.dnd5eapi.co${baddieStats.baddieUrl}`
+return baddieStats.baddieUrl;
+};
   const encounterHtml = `
     <div class="baddie-details">
       <h4>Encounter: ${baddieStats.name}</h4>
-      <img src="https://www.dnd5eapi.co${baddieStats.baddieUrl}" alt="${
-    baddieStats.name
-  }" />
+      <img src= './public/images/Nazgul.jpg', alt=${baddieStats.name}>;
+      
       <p>Type: ${baddieStats.type}</p>
       
       <p>HP: ${baddieStats.hitPoints}</p>

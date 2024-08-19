@@ -1,69 +1,132 @@
 const router = require("express").Router();
+const { Character } = require("../../models");
+const withAuth = require("../../utils/auth");
 const fs = require("fs");
 const path = require("path");
-const { Baddie } = require("../../models");
-const baddieDataPath = path.join(__dirname, "../../data/baddieData.json");
-
+const characterDataPath = path.join(
+  __dirname,
+  "../../seeds/characterData.json"
+);
 // Route to create a new character
-function readBaddieData() {
-  if (!fs.existsSync(baddieDataPath)) {
-    console.error("baddieData.json file not found.");
-    return;
+function readCharacterData() {
+  if (!fs.existsSync(characterDataPath)) {
+    return []; // Return an empty array if the file doesn't exist
   }
-
-  const fileData = fs.readFileSync(baddieDataPath, "utf-8");
+  const fileData = fs.readFileSync(characterDataPath, "utf-8");
   if (fileData.trim() === "") {
-    console.error("baddieData.json file is empty.");
-    return;
+    return []; // Return an empty array if the file is empty
   }
-
   try {
-    const baddieData = JSON.parse(fileData);
-
-    // Validate baddieData
-    if (!Array.isArray(baddieData)) {
-      console.error("Invalid baddieData.json format: Expected an array.");
-      return;
-    }
-
-    // Insert baddieData into the database
-    for (const baddie of baddieData) {
-      try {
-        await Baddie.create(baddie);
-        console.log(`Created baddie: ${baddie.name}`);
-      } catch (error) {
-        console.error(`Failed to create baddie: ${baddie.name}`, error);
-      }
-    }
+    return JSON.parse(fileData);
   } catch (error) {
-    console.error("Failed to parse baddieData.json:", error);
-    return[];
+    console.error("Failed to parse characterData.json:", error);
+    return []; // Return an empty array if parsing fails
   }
-};
+}
 router.post("/", withAuth, async (req, res) => {
   try {
-    const newBaddie = await Baddie.create({
+    const newCharacter = await Character.create({
       name: req.body.name,
-      image: req.body.image,
-      hitPoints: req.body.hitPoints,
-      
+      type: req.body.type,
+      position: req.body.position,
+      user_id: req.session.user_id,
     });
-    res.status(200).json(newBaddie);
-  } catch (error) {
-    console.error("Error while creating baddie:", error);
-    res.status(500).json({ message: "Failed to create baddie", error: error.message });
+    // Read the current character data
+    let currentData = readCharacterData();
+    // Append the new character data
+    currentData.push({
+      id: newCharacter.id,
+      name: newCharacter.name,
+      type: newCharacter.type,
+      position: newCharacter.position,
+      user_id: newCharacter.user_id,
+    });
+    // Save updated data back to characterData.json
+    fs.writeFileSync(characterDataPath, JSON.stringify(currentData, null, 2));
+    res.status(200).json(newCharacter);
+  } catch (err) {
+    console.error("Error while creating character:", err);
+    res
+      .status(400)
+      .json({ message: "Failed to create character", error: err.message });
   }
 });
-
-// // encounter route
-// router.post("/encounter", (req, res) => {
-//   if (req.session.logged_in) {
-//     req.session.destroy(() => {
-//       res.status(204).end();
-//     });
-//   } else {
-//     res.status(404).end();
-//   }
-// });
-
+// Route to get all characters for a user
+router.get("/:id", withAuth, async (req, res) => {
+  try {
+    const characterData = await Character.findByPk(req.params.id);
+    if (!characterData) {
+      res.status(404).json({ message: "No character found with this id!" });
+      return;
+    }
+    // Fetch the character data from characterData.json
+    const character = characterData.get({ plain: true });
+    //
+    res.status(200).json(character);
+  } catch (err) {
+    console.error("Error while fetching character:", err);
+    res
+      .status(500)
+      .json({ message: "Failed to fetch character", error: err.message });
+  }
+});
+// Route to update character position
+router.put("/:id", withAuth, async (req, res) => {
+  try {
+    const updatedCharacter = await Character.update(
+      { position: req.body.position },
+      { where: { id: req.params.id } }
+    );
+    // Check if the character was found in the database
+    if (!updatedCharacter) {
+      res.status(404).json({ message: "No character found with this id!" });
+      return;
+    }
+    // Read the current character data from characterData.json
+    let currentData = JSON.parse(fs.readFileSync(characterDataPath, "utf-8"));
+    // Find the character in the JSON file and update the position
+    const characterIndex = currentData.findIndex(
+      (char) => char.id === parseInt(req.params.id)
+    );
+    if (characterIndex !== -1) {
+      currentData[characterIndex].position = req.body.position;
+      // Save updated data back to characterData.json
+      fs.writeFileSync(characterDataPath, JSON.stringify(currentData, null, 2));
+    }
+    // Send the updated character data back to the client
+    res.status(200).json(updatedCharacter);
+    document.location.replace("/character"); // Redirect to character creation page
+  } catch (err) {
+    console.error("Error while updating character position:", err);
+    res.status(500).json({
+      message: "Failed to update character position",
+      error: err.message,
+    });
+  }
+});
+router.delete("/:id", withAuth, async (req, res) => {
+  try {
+    const deletedCharacter = await Character.destroy({
+      where: { id: req.params.id, user_id: req.session.user_id }, // Ensure the character belongs to the current user
+    });
+    // Check if the character was found in the database
+    if (!deletedCharacter) {
+      res.status(404).json({ message: "No character found with this id!" });
+      return;
+    }
+    // Read the current character data from characterData.json
+    let currentData = JSON.parse(fs.readFileSync(characterDataPath, "utf-8"));
+    currentData = currentData.filter(
+      (characterDataPath) => characterDataPath.id !== parseInt(req.params.id)
+    );
+    // Save updated data back to characterData.json
+    fs.writeFileSync(characterDataPath, JSON.stringify(currentData, null, 2));
+    res.status(200).json({ message: "Character deleted successfully!" });
+  } catch (err) {
+    console.error("Error while deleting character:", err);
+    res
+      .status(500)
+      .json({ message: "Failed to delete character", error: err.message });
+  }
+});
 module.exports = router;
