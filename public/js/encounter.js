@@ -64,8 +64,7 @@ function renderBaddie(characterCard, data) {
   const baddieImage = data.image;
 
   if (!baddieImage) {
-    baddieURL =
-      "https://static.wikia.nocookie.net/pjmidearthfilms/images/f/ff/Nazgul.png/revision/latest?cb=20180807041653";
+    baddieURL = "../images/nazgul.jpg";
   } else {
     baddieURL = `https://www.dnd5eapi.co${baddieImage}`;
   }
