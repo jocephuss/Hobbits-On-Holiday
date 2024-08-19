@@ -20,7 +20,7 @@ Character.init(
       allowNull: false,
     },
     hp: {
-      type: DataTypes.INTEGER, // Character's health points
+      type: DataTypes.STRING, // Character's health points
       allowNull: false,
     },
     position: {
