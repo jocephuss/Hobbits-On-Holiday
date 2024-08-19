@@ -159,3 +159,11 @@ button:hover {
   color: deepskyblue;
   background-color: darkolivegreen;
 }
+
+.baddie-details img {
+  width: 30%;
+  height: auto;
+  max-width: 150px;
+  max-height: 150px;
+  object-fit: cover;
+}

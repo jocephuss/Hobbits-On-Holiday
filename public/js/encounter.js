@@ -64,7 +64,7 @@ function renderBaddie(characterCard, data) {
   const baddieImage = data.image;
 
   if (!baddieImage) {
-    baddieURL = "../images/nazgul.jpg";
+    baddieURL = "../images/Nazgul.jpg";
   } else {
     baddieURL = `https://www.dnd5eapi.co${baddieImage}`;
   }
@@ -137,5 +137,9 @@ document.querySelectorAll("#d20").forEach((button) => {
         "baddie-details"
       ).innerHTML = `<h3>${baddieName} is defeated!</h3>`;
     }
+    setTimeout(() => {
+      document.location.replace("/character");
+    }, 5000);
+    // Redirect to character creation page after 5 seconds of VICTORY!!!
   });
 });
