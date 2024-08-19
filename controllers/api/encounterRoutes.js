@@ -23,6 +23,7 @@ function readCharacterData() {
     return []; // Return an empty array if parsing fails
   }
 }
+<<<<<<< HEAD
 router.post("/", withAuth, async (req, res) => {
   try {
     const newCharacter = await Character.create({
@@ -129,4 +130,7 @@ router.delete("/:id", withAuth, async (req, res) => {
       .json({ message: "Failed to delete character", error: err.message });
   }
 });
+=======
+
+>>>>>>> 6a92594904f65c8913aed9e605b4862e820c225f
 module.exports = router;
